@@ -17,13 +17,23 @@
 @import url('./back-link.css');
 @import url('./footer.css');
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+ul,
+li {
+  list-style-type: none;
+}
+
 /* Timer */
 
-.choice {
-  display: flex;
-  gap: 8px;
+.container {
   margin-top: 36px;
-  margin-left: 156px; 
+  margin-left: 100px; 
 }
 
 input {
@@ -33,6 +43,15 @@ input {
   opacity: 0px;
   border: 1px solid #808080;
   background-color: #FFFFFF;
+  padding-left: 16px;
+
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  color: #2E2F42;
 }
 
 input:hover {
@@ -43,17 +62,17 @@ input:active {
   border: 1px solid #4E75FF
 }
 
-input:disabled {
-  border: 1px solid #808080
-  
+input[disabled] {
+  border: 1px solid #808080;
+  color: #808080;
+  background-color: #FAFAFA;
 }
 
 
-button[type="button"] {
+.button {
   width: 75px;
   height: 40px;
   padding: 8px 16px;
-  gap: 10px;
   border-radius: 8px;
   opacity: 0px;
   background: #4E75FF;;
@@ -65,19 +84,14 @@ button[type="button"] {
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0.04em;
-  text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  color:#FFFFFF;;
+  color:#FFFFFF;
 }
 
-
-
-button[type="button"]:hover {
+.button:hover {
   background-color: #6C8CFF;
 }
 
-button[type="button"]:disabled {
+.button[disabled] {
   color: #989898;;
   background-color: #CFCFCF;
 }
@@ -85,31 +99,22 @@ button[type="button"]:disabled {
 .timer {
   display: flex;
   gap: 24px;
-  margin-left: 156px;
-  margin-bottom: ;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  text-align: left;
-  
 }
 
 .value {
   width: 55px;
   height: 48px;
-  /* align-items: center;
-  justify-items: center; */
-
   font-family: Montserrat;
   font-size: 40px;
   font-weight: 400;
   line-height: 48px;
   letter-spacing: 0.04em;
   text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   color: #2E2F42;
 
 }
@@ -117,14 +122,12 @@ button[type="button"]:disabled {
 .label {
   width: 44px;
   height: 24px;
-  
+  margin: 0 auto;
   font-family: Montserrat;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
   color: #2E2F42;
 }
 
@@ -138,29 +141,70 @@ button[type="button"]:disabled {
   margin-bottom: 16px;
 }
 
-
-button[type="submit"] {
+.input-delay {
   width: 360px;
   height: 40px;
-  top: 718px;
-  left: 28px;
-  padding: 8px 16px;
-  gap: 10px;
+  border-radius: 4px;
+  opacity: 0px;
+  border: 1px solid #808080;
+  outline: none;
+}
+
+.input-delay:hover {
+  border: 1px solid #000000;
+}
+
+fieldset {
+  width: 360px;
+  height: 64px;
+  margin-bottom: 24px;
+  display: flex;
+  border: 1px solid #808080;
+  border-radius: 4px;
+}
+
+.button-radio {
+  display: flex;
+  gap: 8px;
+  width: 112px;
+  height: 32px;
+}
+
+
+.fieldset-radio {
+  width: 264px;
+  height: 32px;
+  display: flex;
+  gap: 48px;
+  padding-bottom: 8px;
+  padding-left: 48px;
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+.button-delay {
+  width: 360px;
+  height: 40px;
   border-radius: 8px;
   opacity: 0px;
   background-color: #4E75FF;
   border: none;
-  padding: 8px 99px;
-
+  text-align: center;
+  outline: none;
   font-family: Montserrat;
   font-size: 16px;
   font-weight: 500;
-  line-height: 24px;
+  line-height: 150%;
   letter-spacing: 0.04em;
-  
+  color: #FFFFFF;
 }
 
-button[type="submit"]:hover {
+.button-delay:hover {
   background-color: #6C8CFF;
 }
 
@@ -168,22 +212,22 @@ button[type="submit"]:hover {
 
 
 
-fieldset {
-  /* width: 360px;
-  height: 78px; */
-  margin-bottom: 24px;
-  /* top: 124px;
-  left: 156px;
-  gap: 0px;
-  border: 1px 0px 0px 0px;
-  opacity: 0px; */
 
-/* width: 360px;
-  height: 64px;
-  top: 138px;
-  left: 156px;
-  gap: 0px;
-  border-radius: 4px 0px 0px 0px;
-  border: 1px 0px 0px 0px;
-  opacity: 0px;  */
- } 
+
+
+ /* menu */
+
+ .link-container {
+  margin-top: 50px;
+  margin-left: 50px;
+  font-family: Montserrat;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: blueviolet;
+ }
+
+ .link {
+  display: block;
+ }

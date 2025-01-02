@@ -5,7 +5,7 @@ import "izitoast/dist/css/iziToast.min.css";// Додатковий імпорт
 
 const timerDisplay = document.querySelector(".timer");
 const inputDateTime = document.querySelector('#datetime-picker');
-const startBtn = document.querySelector('[data-start]');
+const startBtn = document.querySelector('.button');
 const daysTime = document.querySelector('[data-days]');
 const hoursTime = document.querySelector('[data-hours]');
 const minutesTime = document.querySelector('[data-minutes]');
@@ -15,7 +15,8 @@ startBtn.addEventListener("click", start);
 
 let selectedDate;
 let interval;
-startBtn.desabled = true;//кнопка не активна
+startBtn.disabled = true;//кнопка не активна
+inputDateTime.disabled = false; //поле активне
 
 const options = {
   enableTime: true,//Вмикає засіб вибору часу
@@ -23,6 +24,7 @@ const options = {
   defaultDate: new Date(),//Встановлює початкові вибрані дати.
   minuteIncrement: 1,//Регулює крок для введення хвилин 
   onClose(selectedDates) {
+    
     const nowDate = new Date();
     selectedDate = selectedDates[0];//дата з календаря
     console.log(selectedDates[0]);
@@ -31,21 +33,22 @@ const options = {
         iziToast.error({
           title: 'Error',
           message: '"Please choose a date in the future"',
-          position: 'center'
+          position: 'topRight',
+          timeout: 10000
         });
-      
+    } else if (selectedDate || selectedDate > nowDate) {
+        startBtn.disabled = false;
     }
-
-    if (selectedDate || selectedDate > nowDate) {
-      startBtn.desabled = false;
-    } 
  
   },
 };
 
 flatpickr(inputDateTime, options);
 
-function start() {
+
+
+function start(event) {
+console.log(event);
 
   interval = setInterval(() => {
     const nowDate = new Date();
@@ -53,37 +56,22 @@ function start() {
 
     if (deltaTime <= 0) {
       clearInterval(interval);
-      timerDisplay.textContent = "Час вичерпано";
       time = convertMs(0);
-      startBtn.desabled = true;
       return;
     }
 
     const time = convertMs(deltaTime);// time - { days, hours, minutes, seconds }
     console.log(time);
-    onTick(time);
-    
+    daysTime.textContent = `${time.days}`;
+    hoursTime.textContent = `${time.hours}`;
+    minutesTime.textContent = `${time.minutes}`;
+    secondsTime.textContent = `${time.seconds}`;
     
   }, 1000);
 
-    startBtn.desabled = true;
-    inputDateTime.desabled = true;
+    startBtn.disabled = true;
+    inputDateTime.disabled = true;
 }
-
-
-function onTick({ days, hours, minutes, seconds }) {
-  timerDisplay.textContent = `${days} ${hours} ${minutes} ${seconds}`;
-  daysTime.textContent = '${days}';
-  hoursTime.textContent = '${hours}';
-  minutesTime.textContent = '${minutes}';
-  secondsTime.textContent = '${seconds}';
-
-}
-
-
-
-
-
 
 
 function convertMs(ms) {
