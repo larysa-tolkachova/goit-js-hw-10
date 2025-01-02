@@ -15,7 +15,6 @@ function handleSubmit(event) {
     const promiseState = event.target.elements.state.value; // отримуємо rejected або fulfilled
     const delay = event.target.elements.delay.value;
 
-console.log(event);
 
     // створення 
     const promise = new Promise((resolve, reject) => {
@@ -30,8 +29,6 @@ console.log(event);
         
         event.currentTarget.reset();
     })
-    
-    console.log(promise);
     
    
 // обробка

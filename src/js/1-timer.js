@@ -11,7 +11,7 @@ const hoursTime = document.querySelector('[data-hours]');
 const minutesTime = document.querySelector('[data-minutes]');
 const secondsTime = document.querySelector('[data-seconds]');
   
-startBtn.addEventListener("click", start);
+timerDisplay.addEventListener("click", start);
 
 let selectedDate;
 let interval;
@@ -27,7 +27,6 @@ const options = {
     
     const nowDate = new Date();
     selectedDate = selectedDates[0];//дата з календаря
-    console.log(selectedDates[0]);
 
     if (selectedDate < nowDate) {
         iziToast.error({
@@ -36,10 +35,7 @@ const options = {
           position: 'topRight',
           timeout: 10000
         });
-    } else if (selectedDate || selectedDate > nowDate) {
-        startBtn.disabled = false;
-    }
- 
+    } else {startBtn.disabled = false;}
   },
 };
 
@@ -47,8 +43,9 @@ flatpickr(inputDateTime, options);
 
 
 
-function start(event) {
-console.log(event);
+function start() {
+  startBtn.disabled = true;
+  inputDateTime.disabled = true;
 
   interval = setInterval(() => {
     const nowDate = new Date();
@@ -56,21 +53,16 @@ console.log(event);
 
     if (deltaTime <= 0) {
       clearInterval(interval);
-      time = convertMs(0);
+      inputDateTime.disabled = false;
       return;
     }
 
     const time = convertMs(deltaTime);// time - { days, hours, minutes, seconds }
-    console.log(time);
     daysTime.textContent = `${time.days}`;
     hoursTime.textContent = `${time.hours}`;
     minutesTime.textContent = `${time.minutes}`;
     secondsTime.textContent = `${time.seconds}`;
-    
   }, 1000);
-
-    startBtn.disabled = true;
-    inputDateTime.disabled = true;
 }
 
 
@@ -92,4 +84,3 @@ function convertMs(ms) {
 function pad(value) {
   return String(value).padStart(2, "0");
 }
-
