@@ -11,7 +11,7 @@ const hoursTime = document.querySelector('[data-hours]');
 const minutesTime = document.querySelector('[data-minutes]');
 const secondsTime = document.querySelector('[data-seconds]');
   
-timerDisplay.addEventListener("click", start);
+startBtn.addEventListener("click", start);
 
 let selectedDate;
 let interval;
