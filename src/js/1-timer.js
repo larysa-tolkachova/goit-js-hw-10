@@ -3,9 +3,8 @@ import "flatpickr/dist/flatpickr.min.css";// Додатковий імпорт �
 import iziToast from "izitoast";// Описаний у документації
 import "izitoast/dist/css/iziToast.min.css";// Додатковий імпорт стилів
 
-const timerDisplay = document.querySelector(".timer");
 const inputDateTime = document.querySelector('#datetime-picker');
-const startBtn = document.querySelector('.button');
+const startBtn = document.querySelector('[data-start]');
 const daysTime = document.querySelector('[data-days]');
 const hoursTime = document.querySelector('[data-hours]');
 const minutesTime = document.querySelector('[data-minutes]');
